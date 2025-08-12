@@ -600,6 +600,10 @@ local function theme_instance(config)
     for _, key in ipairs(confirm_keys) do
       map_key(config, key)
     end
+    keymap.set('n', 'q', function()
+      vim.cmd('q!')
+    end, { buffer = config.bufnr })
+
     require('dashboard.events').register_lsp_root(config.path)
     local size = math.floor(vim.o.lines / 2)
       - math.ceil(api.nvim_buf_line_count(config.bufnr) / 2)
